@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmeury8uj1d2p"]
+
+[ext_resource type="Script" path="res://procedural_sky/TOD_system.gd" id="1_stej8"]
+[ext_resource type="Material" uid="uid://wyikf3yxoy6x" path="res://DayNightCycle_Temp/Sky_Day.tres" id="2_f2ip0"]
+
+[sub_resource type="Sky" id="Sky_of7ye"]
+sky_material = ExtResource("2_f2ip0")
+
+[sub_resource type="Environment" id="Environment_epdx4"]
+background_mode = 2
+sky = SubResource("Sky_of7ye")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="new" type="Node3D"]
+
+[node name="sun_moon" type="Node3D" parent="." node_paths=PackedStringArray("worldEnvironment", "nightLight", "dayLight")]
+script = ExtResource("1_stej8")
+worldEnvironment = NodePath("../WorldEnvironment")
+nightLight = NodePath("moon")
+dayLight = NodePath("sun")
+
+[node name="moon" type="DirectionalLight3D" parent="sun_moon"]
+transform = Transform3D(-1, 0, -8.74228e-08, 5.82252e-08, -0.745935, -0.666019, -6.52117e-08, -0.666019, 0.745935, 0, 0, 0)
+light_energy = 0.0
+shadow_enabled = true
+
+[node name="sun" type="DirectionalLight3D" parent="sun_moon"]
+transform = Transform3D(1, 0, 0, 0, -0.745935, 0.666019, 0, -0.666019, -0.745935, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_epdx4")

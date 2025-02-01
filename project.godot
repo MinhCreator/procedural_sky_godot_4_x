@@ -11,5 +11,21 @@ config_version=5
 [application]
 
 config/name="procedural sky shader for godot 4.x"
+run/main_scene="res://addons/time-of-day/examples/scenes/sky_system.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[shader_globals]
+
+camera={
+"type": "mat4",
+"value": Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
+angle_mult={
+"type": "vec4",
+"value": Vector4(0, 0, 0, 0)
+}
+normal={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}

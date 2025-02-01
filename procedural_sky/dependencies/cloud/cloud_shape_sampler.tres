@@ -1,0 +1,13 @@
+[gd_resource type="NoiseTexture2D" load_steps=3 format=3 uid="uid://wmd1gi127vsy"]
+
+[sub_resource type="Gradient" id="Gradient_1wtly"]
+offsets = PackedFloat32Array(0.166667, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xivly"]
+noise_type = 3
+seed = 7
+
+[resource]
+seamless = true
+color_ramp = SubResource("Gradient_1wtly")
+noise = SubResource("FastNoiseLite_xivly")

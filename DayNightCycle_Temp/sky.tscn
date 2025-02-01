@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgu3wf4fdhyxp"]
+
+[ext_resource type="Material" uid="uid://wyikf3yxoy6x" path="res://DayNightCycle_Temp/Sky_Day.tres" id="1_cvdua"]
+[ext_resource type="Script" path="res://DayNightCycle_Temp/DayNightCycle.gd" id="2_swfcx"]
+
+[sub_resource type="Sky" id="Sky_y406a"]
+sky_material = ExtResource("1_cvdua")
+
+[sub_resource type="Environment" id="Environment_k6w68"]
+background_mode = 2
+sky = SubResource("Sky_y406a")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="sky" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k6w68")
+
+[node name="sun" type="DirectionalLight3D" parent="." node_paths=PackedStringArray("worldEnvironment", "nightLight")]
+transform = Transform3D(0.992173, -0.12077, -0.0317385, 0.0126479, -0.155669, 0.987728, -0.124228, -0.980399, -0.152923, 0, 0, 0)
+light_energy = 0.996957
+script = ExtResource("2_swfcx")
+worldEnvironment = NodePath("../WorldEnvironment")
+nightLight = NodePath("moon")
+rotationOffset = Vector3(11.515, 11.725, -4.645)
+currentTime = 637.999
+speedMultiplier = 100.0
+
+[node name="moon" type="DirectionalLight3D" parent="sun"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+light_energy = 0.000304325

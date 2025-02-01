@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://c58jk03mn72ha"]
+
+[ext_resource type="Material" uid="uid://xhkr6yx52c1u" path="res://procedural_sky/Stylized_sky_remaster.material" id="1_5p13q"]
+[ext_resource type="Script" path="res://procedural_sky/Time_manager.gd" id="2_c56lf"]
+
+[sub_resource type="Gradient" id="Gradient_ahc36"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_anvbr"]
+gradient = SubResource("Gradient_ahc36")
+
+[sub_resource type="Sky" id="Sky_sqoec"]
+sky_material = ExtResource("1_5p13q")
+process_mode = 2
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_k7qmd"]
+background_mode = 2
+sky = SubResource("Sky_sqoec")
+tonemap_mode = 2
+glow_enabled = true
+fog_sky_affect = 0.02
+adjustment_saturation = 2.0
+adjustment_color_correction = SubResource("GradientTexture2D_anvbr")
+
+[node name="sky_system" type="Node3D"]
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.706007, -0.708205, 0, 0.708204, 0.706008, 0, 0, 0)
+light_energy = 0.0458218
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k7qmd")
+
+[node name="Time_Simulation" type="Node" parent="." node_paths=PackedStringArray("light_source", "worldEnvironment")]
+script = ExtResource("2_c56lf")
+light_source = NodePath("../sun")
+worldEnvironment = NodePath("../WorldEnvironment")
+currentTime = 1260.36
+speedMultiplier = 50.0
+isNight = true
+Year = 2025
+hours = 22
+minutes = 40
+date_format = 0
+DateFormatDisplay = "0/0/2025"
+moonPhase = true
+moonPhaseCalc = 0.614294

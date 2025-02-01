@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://wyikf3yxoy6x"]
+
+[ext_resource type="Shader" path="res://DayNightCycle_Temp/Sky.gdshader" id="1_4qvur"]
+[ext_resource type="Texture2D" uid="uid://bjmjwr7mm2pu1" path="res://procedural_sky/dependencies/cloud/cloud_noise_sampler1.tres" id="2_bqmd7"]
+[ext_resource type="Texture2D" uid="uid://dsvxkj5mhnup4" path="res://DayNightCycle_Temp/Textures/Moon.png" id="2_i00sv"]
+[ext_resource type="Texture2D" uid="uid://bo8ll77dkxicn" path="res://DayNightCycle_Temp/Textures/ShootingStar.png" id="3_dv5v0"]
+[ext_resource type="Texture2D" uid="uid://xp4feotx6mbm" path="res://procedural_sky/dependencies/cloud/cloud_shape_sampler1.tres" id="3_f3hmj"]
+[ext_resource type="Texture2D" uid="uid://du8kf3chvl8rg" path="res://DayNightCycle_Temp/Textures/Sun.png" id="4_j04eh"]
+
+[sub_resource type="Curve" id="Curve_7ipx0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.148649, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.804124), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5gomo"]
+texture_mode = 1
+curve = SubResource("Curve_7ipx0")
+
+[resource]
+shader = ExtResource("1_4qvur")
+shader_parameter/clouds_samples = 32
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.4
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_smoothness = 0.03
+shader_parameter/clouds_light_color = Color(0.039275, 0.0431963, 0.0941735, 1)
+shader_parameter/clouds_shadow_intensity = 3.5
+shader_parameter/cloud_shape_sampler = ExtResource("3_f3hmj")
+shader_parameter/cloud_noise_sampler = ExtResource("2_bqmd7")
+shader_parameter/cloud_curves = SubResource("CurveTexture_5gomo")
+shader_parameter/high_clouds_density = 0.0
+shader_parameter/top_color = Color(4.25683e-05, 0.00787871, 0.0784595, 1)
+shader_parameter/bottom_color = Color(4.25683e-05, 0.00787871, 0.0784595, 1)
+shader_parameter/sun_scatter = Color(0.054902, 0.0352941, 0.160784, 1)
+shader_parameter/sun_tint = Color(1, 1, 0.8, 1)
+shader_parameter/sun_scale = 12.155
+shader_parameter/sun_intensity = 5.0
+shader_parameter/sun_sampler = ExtResource("4_j04eh")
+shader_parameter/moon_tint = Color(1, 1, 0.8, 1)
+shader_parameter/moon_scale = 30.0
+shader_parameter/moon_intensity = 1.0
+shader_parameter/moon_sampler = ExtResource("2_i00sv")
+shader_parameter/stars_intensity = 0.499969
+shader_parameter/shooting_stars_intensity = 1.785
+shader_parameter/shooting_star_tint = Color(0.862745, 0.588235, 0.247059, 1)
+shader_parameter/shooting_star_sampler = ExtResource("3_dv5v0")
