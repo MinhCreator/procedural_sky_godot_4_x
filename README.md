@@ -19,10 +19,11 @@ Main feature:
 
 + customized into shader code
 
-+ free and open source
++ can modify custom function and add new features
 
 + customized shader parameter
 
++ can changing between stylized cloud and realistic cloud
 
 ## Bug and issues
 
